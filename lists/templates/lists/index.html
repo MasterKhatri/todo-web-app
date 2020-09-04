@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'lists/style.css' %}">
+    <title>To-do List</title>
+  </head>
+  <body>
+    
+    <div class="container p-3 d-lg-flex h-100">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-sm-12 col-md-6">
+          <div class="card text-white shadow transparent">
+            <h3 class="card-header">What do you want to do today?</h3>
+            <div class="card-body">
+              <form action="{% url 'add' %}" method="POST" role="form">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Add your to-do item</label>
+                  <div class="d-flex">
+                    {{ form.text }}
+                    <button type="submit" class="btn transparent text-white rounded-custom px-md-3">Add</button>
+                  </div>
+                  
+                </div>
+               
+              </form>
+             <small class="text-white">Hint: Click on a list item to mark it as completed</small>
+              <ul class="list-group list-group-flush rounded">
+                {% for list in todoItems %}
+                  {% if list.completed %}
+                    <li class="list-group-item transparent list-group-item-completed">{{ list.text }}</li>
+                  {% else %}
+                    <li class="list-group-item transparent"><a title="Mark it as completed" href="{% url 'completed' list.id %}">{{ list.text }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            
+            <div class="card-footer">
+              <div class="d-flex">
+                <a href="{% url 'deletecompleted' %}" class="btn transparent text-white rounded-custom px-md-3 mr-3">Delete Completed</a>
+          
+                <a href="{% url 'deleteall' %}" class="btn transparent text-white rounded-custom px-md-3 mr-3">Delete All</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  </body>
+</html>

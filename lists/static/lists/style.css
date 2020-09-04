@@ -1,0 +1,89 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.transparent {
+  background: rgb(0, 0, 0); /* Fallback for older browsers without RGBA-support */
+    background: rgba(0, 0, 0, 0);
+}
+
+.rounded-custom {
+	border-radius: 20px;
+}
+
+ul {
+	max-height: 350px;
+	overflow-y: scroll;
+}
+
+/* scrollbar width */
+ul::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* scrollbar track */
+ul::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+}
+
+/* scrollbar handle */
+ul::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+ul li:hover {
+	background:  rgba(0, 0, 0, 0.5) !important;
+}
+
+.list-group-item-completed {
+	text-decoration: line-through;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+a:hover {
+	color: white;
+}
+
+.btn:hover {
+	background: rgba(0, 0, 0, 0.5);
+}
+
+input:focus {
+	background: rgba(0, 0, 0, 0.5) !important;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  color: white;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: white;
+}
+
+::placeholder {
+  color: white !important;
+}
